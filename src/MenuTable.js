@@ -61,25 +61,21 @@ var MenuTableLayer = cc.Layer.extend({
         var strValue = idx.toFixed(0);
         var cell = table.dequeueCell();
         var label;
-        //if (!cell) {
-            cell = new cc.TableViewCell();
-            var sprite =new cc.Sprite("res/rankingCellBg.png");
-            sprite.setAnchorPoint(0,0);
-            sprite.setPosition(0, 0);
-            cell.addChild(sprite);
 
-            var showStr = " "+(parseInt(strValue) + 1) +"、"+ this.rankingList[strValue].userName + " 得分："+this.rankingList[strValue].score + " ,等级："+this.rankingList[strValue].level;
-            label = new cc.LabelTTF(showStr, "Arial", 30.0,cc.size(600,80));
-            label.x = 0;
-            label.y = 30;
-            label.setAnchorPoint(0,0.5);
-            label.color = cc.color(2,2,2);
-            label.setTag(123);
-            cell.addChild(label);
-        /*} else {
-            label = cell.getChildByTag(123);
-            label.setString(strValue);
-        }*/
+        cell = new cc.TableViewCell();
+        var sprite =new cc.Sprite("res/rankingCellBg.png");
+        sprite.setAnchorPoint(0,0);
+        sprite.setPosition(0, 0);
+        cell.addChild(sprite);
+
+        var showStr = " "+(parseInt(strValue) + 1) +"、"+ this.rankingList[strValue].userName + " 得分："+this.rankingList[strValue].score + " ,等级："+this.rankingList[strValue].level;
+        label = new cc.LabelTTF(showStr, "Arial", 30.0,cc.size(600,80));
+        label.x = 0;
+        label.y = 30;
+        label.setAnchorPoint(0,0.5);
+        label.color = cc.color(2,2,2);
+        label.setTag(123);
+        cell.addChild(label);
 
         return cell;
     },
