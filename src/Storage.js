@@ -95,7 +95,8 @@ var Storage = {
                 "level" : userList[key].level
             });
         }
-        rankingList = this.rankingSort(rankingList);
+
+        return this.rankingSort(rankingList);
     },
 
     getUserInfo : function(userName){
@@ -115,8 +116,75 @@ var Storage = {
     },
 
     getUserList : function(){
-        var totalUser = cc.sys.localStorage.getItem("userList");
-        return totalUser ? JSON.parse(totalUser) : new Object();
+        //var totalUser = cc.sys.localStorage.getItem("userList");
+        //return totalUser ? JSON.parse(totalUser) : new Object();
+        var totalUser = {
+            "userA" : {
+                "score" : 176,
+                "level" : 3
+            },
+            "userB" : {
+                "score" : 324,
+                "level" : 4
+            },
+            "userC" : {
+                "score" : 5435,
+                "level" : 3432
+            },
+            "userD" : {
+                "score" : 17326,
+                "level" : 3
+            },
+            "userE" : {
+                "score" : 432,
+                "level" : 5
+            },
+            "userF" : {
+                "score" : 32,
+                "level" : 5
+            },
+            "userH" : {
+                "score" : 35,
+                "level" : 4
+            },
+            "userI" : {
+                "score" : 176,
+                "level" : 3
+            },
+            "userJ" : {
+                "score" : 2342,
+                "level" : 34
+            },
+            "userK" : {
+                "score" : 23,
+                "level" : 3
+            },
+            "userL" : {
+                "score" : 43,
+                "level" : 3
+            },
+            "userM" : {
+                "score" : 32,
+                "level" : 3
+            },
+            "userN" : {
+                "score" : 65,
+                "level" : 5
+            },
+            "userO" : {
+                "score" : 132,
+                "level" : 5
+            },
+            "userP" : {
+                "score" : 654,
+                "level" : 3
+            },
+            "userQ" : {
+                "score" : 654,
+                "level" : 4
+            },
+        };
+        return totalUser;
     },
 
     rankingSort : function (arrList){
@@ -135,7 +203,7 @@ var Storage = {
                 right.push(arrList[i]);
             }
         }
-        return this.rankingSort(left).concat([pivot], this.rankingSort(right));
+        return this.rankingSort(right).concat([pivot], this.rankingSort(left));
     }
 };
 

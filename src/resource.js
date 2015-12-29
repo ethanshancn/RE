@@ -20,6 +20,8 @@ var g_resources = [
     "res/StartGame.png",
     "res/ranking.png",
     "res/starting.png",
-    "res/ending.png"
+    "res/ending.png",
+
+    "res/rankingCellBg.png"
 
 ];
