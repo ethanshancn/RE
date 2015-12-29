@@ -73,8 +73,7 @@ var Storage = {
         var totalUser = this.getUserList();
         if(typeof totalUser[userName] == "undefined")
         {
-            return FALSE;
-            cc.log("User : "+userName+" not exists!");
+            this.addUser(userName);
         }
         totalUser[userName].level = (level > 0) ? level : 1;
         totalUser[userName].score = (score > 0) ? score : 0;
