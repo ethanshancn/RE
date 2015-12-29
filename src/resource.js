@@ -14,5 +14,12 @@ var g_resources = [
     "res/compnay.png",
     "res/title.png",
     "res/return.png",
-    "res/momodiao.png"
+    "res/momodiao.png",
+
+    "res/StartBg.jpg",
+    "res/StartGame.png",
+    "res/ranking.png",
+    "res/starting.png",
+    "res/ending.png"
+
 ];

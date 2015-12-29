@@ -11,32 +11,32 @@ var HomeLayer = cc.Layer.extend({
         //2. get the screen size of your game canvas
         var winsize = cc.director.getWinSize();
 
-        var bkgd = new cc.Sprite("res/helloBG_png.png");
+        var bkgd = new cc.Sprite("res/StartBg.jpg");
         bkgd.x = winsize.width / 2;
         bkgd.y = winsize.height / 2;
         this.addChild(bkgd);
 
-        var ccew = new cc.Sprite("res/compnay.png");
-        ccew.x = winsize.width / 2;
-        ccew.y = winsize.height - 200;
-        this.addChild(ccew);
+        //var ccew = new cc.Sprite("res/compnay.png");
+        //ccew.x = winsize.width / 2-20;
+        //ccew.y = winsize.height - 200;
+        //this.addChild(ccew);
 
-        var tt = new cc.Sprite("res/title.png");
+        var tt = new cc.Sprite("res/titling.png");
         tt.x = winsize.width / 2;
         tt.y = winsize.height - 400;
         this.addChild(tt);
 
         var mmd = new cc.Sprite("res/momodiao.png");
-        var startPng = new cc.Sprite("res/start.png");
+        var startPng = new cc.Sprite("res/starting.png");
         var startMenu = new cc.MenuItemSprite(startPng, mmd, this.startGameCallback, this);
         startMenu.x = winsize.width / 2;
-        startMenu.y = 600;
+        startMenu.y = 700;
 
         var mmd2 = new cc.Sprite("res/momodiao.png");
-        var tops = new cc.Sprite("res/top10.png");
+        var tops = new cc.Sprite("res/ranking.png");
         var menuItemSprite = new cc.MenuItemSprite(tops, mmd2, this.catchTops, this);
         menuItemSprite.x = winsize.width / 2;
-        menuItemSprite.y = 300;
+        menuItemSprite.y = 600;
 
         var menu = new cc.Menu(startMenu, menuItemSprite);
         menu.x = 0;

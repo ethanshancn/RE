@@ -19,15 +19,15 @@ var TopLayer = cc.Layer.extend({
         bg.x = winsize.width / 2;
         bg.y = winsize.height / 2;
 
-        var ccew = new cc.Sprite("res/compnay.png");
-        ccew.x = winsize.width / 2;
-        ccew.y = winsize.height - 200;
-        this.addChild(ccew);
+        //var ccew = new cc.Sprite("res/compnay.png");
+        //ccew.x = winsize.width / 2;
+        //ccew.y = winsize.height - 200;
+        //this.addChild(ccew);
 
-        var tops = new cc.Sprite("res/return.png");
+        var tops = new cc.Sprite("res/homepage.png");
         var menuItemSprite = new cc.MenuItemSprite(tops, mmd, this.returnHome, this);
         menuItemSprite.x = 360;
-        menuItemSprite.y = 200;
+        menuItemSprite.y = 100;
 
         var menu = new cc.Menu(menuItemSprite);
         menu.x = 0;
