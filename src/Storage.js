@@ -80,7 +80,7 @@ var Storage = {
         cc.sys.localStorage.setItem("userList",JSON.stringify(totalUser));
     },
 
-    updateRankingList : function (){
+    getRankingList : function (){
         var userList = this.getUserList();
         if(Object.keys(userList).length == 0)
         {
@@ -95,12 +95,7 @@ var Storage = {
                 "level" : userList[key].level
             });
         }
-        rankingList = this.rankingSort(rankingList.shift(),new Array(),rankingList);
-
-    },
-
-    getRankingList : function (){
-
+        rankingList = this.rankingSort(rankingList);
     },
 
     getUserInfo : function(userName){
@@ -124,10 +119,23 @@ var Storage = {
         return totalUser ? JSON.parse(totalUser) : new Object();
     },
 
-    rankingSort : function (middle,leftArr,rightArr){
-        var left = new Array();
-        var right = new Array();
-
+    rankingSort : function (arrList){
+        if (arrList.length <= 1)
+        {
+            return arrList;
+        }
+        var pivotIndex = Math.floor(arrList.length / 2);
+        var pivot = arrList.splice(pivotIndex, 1)[0];
+        var left = [];
+        var right = [];
+        for (var i = 0; i < arrList.length; i++){
+            if (arrList[i].score < pivot.score) {
+                left.push(arrList[i]);
+            } else {
+                right.push(arrList[i]);
+            }
+        }
+        return this.rankingSort(left).concat([pivot], this.rankingSort(right));
     }
 };
 

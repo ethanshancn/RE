@@ -10,6 +10,13 @@ var MenuTableLayer = cc.Layer.extend({
         _this._super();
         var winSize = cc.winSize;
 
+        _this.startBgSprite = new cc.Sprite("res/StartBg.jpg");
+        _this.startBgSprite.attr({
+            x: winSize.width / 2,
+            y: winSize.height / 2,
+        });
+        _this.addChild(_this.startBgSprite, 0);
+
         var tableWidth = 306;
         var tableHeight = 700;
 
