@@ -28,6 +28,17 @@ var MenuTableLayer = cc.Layer.extend({
         this.addChild(tableView);
         tableView.reloadData();
 
+        var mmd = new cc.Sprite("res/momodiao.png");
+        var tops = new cc.Sprite("res/homepage.png");
+        var menuItemSprite = new cc.MenuItemSprite(tops, mmd, this.returnHome, this);
+        menuItemSprite.x = 360;
+        menuItemSprite.y = 100;
+
+        var menu = new cc.Menu(menuItemSprite);
+        menu.x = 0;
+        menu.y = 0;
+
+        this.addChild(menu);
         return true;
     },
     scrollViewDidScroll:function (view) {
@@ -74,6 +85,10 @@ var MenuTableLayer = cc.Layer.extend({
 
     numberOfCellsInTableView:function (table) {
         return 25;
+    },
+
+    returnHome: function () {
+        cc.director.runScene(new HomeScene());
     }
 });
 

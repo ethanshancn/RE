@@ -57,7 +57,7 @@ var HomeLayer = cc.Layer.extend({
 
     catchTops: function () {
         console.log("top10!");
-        cc.director.runScene(new TopScene());
+        cc.director.runScene(new RankingListSence());
     }
 
 });
