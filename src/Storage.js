@@ -1,5 +1,73 @@
+var totalUser = {
+    //"userA" : {
+    //    "score" : 176,
+    //    "level" : 3
+    //},
+    //"userB" : {
+    //    "score" : 324,
+    //    "level" : 4
+    //},
+    //"userC" : {
+    //    "score" : 5435,
+    //    "level" : 3432
+    //},
+    //"userD" : {
+    //    "score" : 17326,
+    //    "level" : 3
+    //},
+    //"userE" : {
+    //    "score" : 432,
+    //    "level" : 5
+    //},
+    //"userF" : {
+    //    "score" : 32,
+    //    "level" : 5
+    //},
+    //"userH" : {
+    //    "score" : 35,
+    //    "level" : 4
+    //},
+    //"userI" : {
+    //    "score" : 176,
+    //    "level" : 3
+    //},
+    //"userJ" : {
+    //    "score" : 2342,
+    //    "level" : 34
+    //},
+    //"userK" : {
+    //    "score" : 23,
+    //    "level" : 3
+    //},
+    //"userL" : {
+    //    "score" : 43,
+    //    "level" : 3
+    //},
+    //"userM" : {
+    //    "score" : 32,
+    //    "level" : 3
+    //},
+    //"userN" : {
+    //    "score" : 65,
+    //    "level" : 5
+    //},
+    //"userO" : {
+    //    "score" : 132,
+    //    "level" : 5
+    //},
+    //"userP" : {
+    //    "score" : 654,
+    //    "level" : 3
+    //},
+    //"userQ" : {
+    //    "score" : 654,
+    //    "level" : 4
+    //}
+};
 
 var Storage = {
+
+
 
     getCurrentLevel: function () {
         var level = cc.sys.localStorage.getItem("level") || 0;
@@ -22,9 +90,10 @@ var Storage = {
     },
 
     setCurrentUser : function(userName){
-        if(!(userName instanceof string) || userName.length <= 0)
+        //if(!(userName instanceof string) || userName.length <= 0)
+        if(!(typeof  userName ==='string') || userName.length <= 0)
         {
-            return FALSE;
+            return;
         }
         cc.sys.localStorage.setItem("currentUser", userName);
     },
@@ -34,9 +103,9 @@ var Storage = {
     },
 
     addUser : function(userName){
-        if(!(userName instanceof string) || userName.length <= 0)
+        if(!(typeof  userName ==='string') || userName.length <= 0)
         {
-            return FALSE;
+            return;
         }
         var totalUser = this.getUserList();
         if(typeof totalUser[userName] != "undefined")
@@ -45,8 +114,8 @@ var Storage = {
             cc.log("User : "+userName+" exists!");
         }
         totalUser[userName] = {
-            'level' : 1,
-            'score' : 0
+            level : 1,
+            score : 0
         };
         cc.sys.localStorage.setItem("userList",JSON.stringify(totalUser));
     },
@@ -66,17 +135,17 @@ var Storage = {
     },
 
     updateUserInfo : function(userName,level,score){
-        if(!(userName instanceof string) || userName.length <= 0)
+        if(!(typeof userName === 'string') || userName.length <= 0)
         {
-            return FALSE;
+            return;
         }
         var totalUser = this.getUserList();
         if(typeof totalUser[userName] == "undefined")
         {
             this.addUser(userName);
         }
-        totalUser[userName].level = (level > 0) ? level : 1;
-        totalUser[userName].score = (score > 0) ? score : 0;
+        totalUser[userName].level = (level > totalUser[userName].level) ? level : totalUser[userName].level;
+        totalUser[userName].score = (score > totalUser[userName].score) ? score : totalUser[userName].score;
         cc.sys.localStorage.setItem("userList",JSON.stringify(totalUser));
     },
 
@@ -118,72 +187,6 @@ var Storage = {
     getUserList : function(){
         //var totalUser = cc.sys.localStorage.getItem("userList");
         //return totalUser ? JSON.parse(totalUser) : new Object();
-        var totalUser = {
-            "userA" : {
-                "score" : 176,
-                "level" : 3
-            },
-            "userB" : {
-                "score" : 324,
-                "level" : 4
-            },
-            "userC" : {
-                "score" : 5435,
-                "level" : 3432
-            },
-            "userD" : {
-                "score" : 17326,
-                "level" : 3
-            },
-            "userE" : {
-                "score" : 432,
-                "level" : 5
-            },
-            "userF" : {
-                "score" : 32,
-                "level" : 5
-            },
-            "userH" : {
-                "score" : 35,
-                "level" : 4
-            },
-            "userI" : {
-                "score" : 176,
-                "level" : 3
-            },
-            "userJ" : {
-                "score" : 2342,
-                "level" : 34
-            },
-            "userK" : {
-                "score" : 23,
-                "level" : 3
-            },
-            "userL" : {
-                "score" : 43,
-                "level" : 3
-            },
-            "userM" : {
-                "score" : 32,
-                "level" : 3
-            },
-            "userN" : {
-                "score" : 65,
-                "level" : 5
-            },
-            "userO" : {
-                "score" : 132,
-                "level" : 5
-            },
-            "userP" : {
-                "score" : 654,
-                "level" : 3
-            },
-            "userQ" : {
-                "score" : 654,
-                "level" : 4
-            },
-        };
         return totalUser;
     },
 

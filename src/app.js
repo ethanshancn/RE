@@ -4,6 +4,8 @@ function trace() {
 
 var GameLayer = cc.Layer.extend({
 
+    _userName: null,
+
     mapPanel: null,
     ui: null,
 
@@ -65,6 +67,14 @@ var GameLayer = cc.Layer.extend({
         return true;
     },
 
+    recordInfoForCurrentGame: function (level, score) {
+        //接受用户名
+        this.ui.showSign();
+        Storage.updateUserInfo(Storage.getCurrentUser(), level, score);
+        Storage.setCurrentLevel(0);
+        Storage.setCurrentScore(0);
+    },
+
     _init: function () {
         this.steps = 0;
         this.level = Storage.getCurrentLevel();
@@ -72,12 +82,13 @@ var GameLayer = cc.Layer.extend({
 
         // 过关保护
         if (this.level >= Constant.levels.length) {
+            //this.recordInfoForCurrentGame(Storage.getCurrentLevel(), Storage.getCurrentScore());
             this.level = 0;
             this.score = 0;
             Storage.setCurrentLevel(this.level);
             Storage.setCurrentScore(this.score);
             this.scheduleOnce(function () {
-                cc.director.runScene(new TopScene());
+                cc.director.runScene(new SignScene());
             }, 0);
         }
 
@@ -217,16 +228,23 @@ var GameLayer = cc.Layer.extend({
             this.score += (this.limitStep - this.steps) * 30;
             Storage.setCurrentLevel(this.level + 1);
             Storage.setCurrentScore(this.score);
-            this.scheduleOnce(function () {
-                cc.director.runScene(new GameScene());
-            }, 3);
+            if (this.level < Constant.levels.length - 1) {
+                this.scheduleOnce(function () {
+                    cc.director.runScene(new GameScene());
+                }, 1);
+            } else {
+                this.scheduleOnce(function () {
+                    cc.director.runScene(new SignScene());
+                }, 1);
+
+            }
         } else if (this.steps >= this.limitStep) {
             this.ui.showFail();
-            Storage.setCurrentLevel(0);
-            Storage.setCurrentScore(0);
+            Storage.setCurrentLevel(this.level + 1);
+            Storage.setCurrentScore(this.score);
             this.scheduleOnce(function () {
-                cc.director.runScene(new TopScene());
-            }, 3);
+                cc.director.runScene(new SignScene());
+            }, 1);
         }
     }
 

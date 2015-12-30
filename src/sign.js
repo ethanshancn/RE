@@ -1,18 +1,15 @@
 /**
- * Author: Ethan
- * CreateTime: 2015/12/29 16:11
- * Description:
+ * Created by GYQ on 15/12/30.
  */
-var MenuTableLayer = cc.Layer.extend({
+var SignLayer = cc.Layer.extend({
+
+    level: null,
+    score: null,
 
     ctor: function () {
         var _this = this;
         _this._super();
         var winSize = cc.winSize;
-
-        Storage.updateUserInfo(Storage.getCurrentUser(), Storage.getCurrentLevel(), Storage.getCurrentScore());
-        Storage.setCurrentLevel(0);
-        Storage.setCurrentScore(0);
 
         //设置背景
         _this.startBgSprite = new cc.Sprite("res/StartBg.jpg");
@@ -25,40 +22,35 @@ var MenuTableLayer = cc.Layer.extend({
         var tableWidth = 600;
         var tableHeight = 1000;
 
-        var tableView = new cc.TableView(_this, cc.size(tableWidth, tableHeight));
-        tableView.setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL);
-        tableView.setPosition((winSize.width - tableWidth) / 2, (winSize.height - tableHeight) - 80);
-        tableView.setDelegate(_this);
-        tableView.setVerticalFillOrder(cc.TABLEVIEW_FILL_TOPDOWN);
-        this.addChild(tableView);
-        tableView.reloadData();
+        //var tableView = new cc.TableView(_this, cc.size(tableWidth, tableHeight));
+        //tableView.setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL);
+        //tableView.setPosition((winSize.width - tableWidth) / 2, (winSize.height - tableHeight) - 80);
+        //tableView.setDelegate(_this);
+        //tableView.setVerticalFillOrder(cc.TABLEVIEW_FILL_TOPDOWN);
+        //this.addChild(tableView);
+        //tableView.reloadData();
 
         //设置返回按钮
-        var mmd = new cc.Sprite("res/momodiao.png");
-        var tops = new cc.Sprite("res/homepage.png");
-        var menuItemSprite = new cc.MenuItemSprite(tops, mmd, this.returnHome, this);
-        menuItemSprite.x = winSize.width / 2;
-        menuItemSprite.y = 100;
-        var menu = new cc.Menu(menuItemSprite);
-        menu.x = 0;
-        menu.y = 0;
-
-        this.addChild(menu);
-
-
-        //this.recordInfoForCurrentGame(Storage.getCurrentLevel(), Storage.getCurrentScore());
+        //var mmd = new cc.Sprite("res/momodiao.png");
+        //var tops = new cc.Sprite("res/homepage.png");
+        //var menuItemSprite = new cc.MenuItemSprite(tops, mmd, this.returnHome, this);
+        //menuItemSprite.x = winSize.width / 2;
+        //menuItemSprite.y = 100;
+        //var menu = new cc.Menu(menuItemSprite);
+        //menu.x = 0;
+        //menu.y = 0;
+        //
+        //this.addChild(menu);
+        this.recordInfoForCurrentGame(Storage.getCurrentLevel(), Storage.getCurrentScore());
         return true;
     },
 
     recordInfoForCurrentGame: function (level, score) {
         //接受用户名
-        this.showSign();
-        Storage.updateUserInfo(Storage.getCurrentUser(), level, score);
-        Storage.setCurrentLevel(0);
-        Storage.setCurrentScore(0);
+        this.showSign(level, score);
     },
 
-    showSign: function () {
+    showSign: function (level, score) {
         var sprite = new cc.Sprite("res/sign_wenzi.png");
         sprite.x = cc.winSize.width / 2;
         sprite.y = 1030;
@@ -75,6 +67,8 @@ var MenuTableLayer = cc.Layer.extend({
 
         cc.MenuItemFont.setFontSize(60);
 
+        this.level = Storage.getCurrentLevel();
+        this.score = Storage.getCurrentScore();
         //6.create a menu and assign onPlay event callback to it
         var menuItemPlay = cc.MenuItemSprite.create(
             cc.Sprite.create("res/signok.png"), // normal state image
@@ -88,9 +82,10 @@ var MenuTableLayer = cc.Layer.extend({
 
     textFieldEvent: function (sender, type) {
         Storage.setCurrentUser(this._userName.getString());
+
         this.scheduleOnce(function () {
             cc.director.runScene(new RankingListSence());
-        }, 1);
+        }, 0);
     },
 
 
@@ -145,10 +140,10 @@ var MenuTableLayer = cc.Layer.extend({
     }
 });
 
-var RankingListSence = cc.Scene.extend({
+var SignScene = cc.Scene.extend({
     onEnter: function () {
         this._super();
-        var rankingList = new MenuTableLayer();
+        var rankingList = new SignLayer();
         this.addChild(rankingList);
     }
 });
