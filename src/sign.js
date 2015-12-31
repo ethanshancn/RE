@@ -55,14 +55,15 @@ var SignLayer = cc.Layer.extend({
         sprite.x = cc.winSize.width / 2;
         sprite.y = 1030;
         this.addChild(sprite);
-        this._userName = new cc.EditBox(cc.size(234, 29), new cc.Scale9Sprite("res/sign_input.png"));
+
+        this._userName = new cc.EditBox(cc.size(500, 100), new cc.Scale9Sprite("res/sign_input.png"));
         this._userName.x = cc.winSize.width / 2;
-        this._userName.y = 1000;
-        this._userName.setFontSize(20);
+        this._userName.y = 950;
+        this._userName.setFontSize(40);
         this._userName.setPlaceHolder("一个响当当的名号很重要! :-D");
-        this._userName.setDelegate(this);
         this._userName.setMaxLength(20);
         this._userName.setReturnType(this._userName.KEYBOARD_RETURNTYPE_DONE);
+        this._userName.setDelegate(this);
         this.addChild(this._userName);
 
         cc.MenuItemFont.setFontSize(60);
@@ -76,7 +77,7 @@ var SignLayer = cc.Layer.extend({
             this.textFieldEvent, this);
         var menu = cc.Menu.create(menuItemPlay);  //7. create the menu
         menu.x = cc.winSize.width / 2;
-        menu.y = 960;
+        menu.y = 850;
         this.addChild(menu);
     },
 
@@ -87,7 +88,6 @@ var SignLayer = cc.Layer.extend({
             cc.director.runScene(new RankingListSence());
         }, 0);
     },
-
 
     scrollViewDidScroll: function (view) {
 

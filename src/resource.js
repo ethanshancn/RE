@@ -30,7 +30,8 @@ var g_resources = [
     "res/ranking.png",
     "res/starting.png",
     "res/ending.png",
-
+    "res/sign_input.png",
+    "res/sign_wenzi.png",
     "res/rankingCellBg.png"
 
 ];
