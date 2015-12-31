@@ -1,74 +1,4 @@
-var totalUser = {
-    //"userA" : {
-    //    "score" : 176,
-    //    "level" : 3
-    //},
-    //"userB" : {
-    //    "score" : 324,
-    //    "level" : 4
-    //},
-    //"userC" : {
-    //    "score" : 5435,
-    //    "level" : 3432
-    //},
-    //"userD" : {
-    //    "score" : 17326,
-    //    "level" : 3
-    //},
-    //"userE" : {
-    //    "score" : 432,
-    //    "level" : 5
-    //},
-    //"userF" : {
-    //    "score" : 32,
-    //    "level" : 5
-    //},
-    //"userH" : {
-    //    "score" : 35,
-    //    "level" : 4
-    //},
-    //"userI" : {
-    //    "score" : 176,
-    //    "level" : 3
-    //},
-    //"userJ" : {
-    //    "score" : 2342,
-    //    "level" : 34
-    //},
-    //"userK" : {
-    //    "score" : 23,
-    //    "level" : 3
-    //},
-    //"userL" : {
-    //    "score" : 43,
-    //    "level" : 3
-    //},
-    //"userM" : {
-    //    "score" : 32,
-    //    "level" : 3
-    //},
-    //"userN" : {
-    //    "score" : 65,
-    //    "level" : 5
-    //},
-    //"userO" : {
-    //    "score" : 132,
-    //    "level" : 5
-    //},
-    //"userP" : {
-    //    "score" : 654,
-    //    "level" : 3
-    //},
-    //"userQ" : {
-    //    "score" : 654,
-    //    "level" : 4
-    //}
-};
-
 var Storage = {
-
-
-
     getCurrentLevel: function () {
         var level = cc.sys.localStorage.getItem("level") || 0;
         return parseInt(level);
@@ -90,7 +20,6 @@ var Storage = {
     },
 
     setCurrentUser : function(userName){
-        //if(!(userName instanceof string) || userName.length <= 0)
         if(!(typeof  userName ==='string') || userName.length <= 0)
         {
             return;
@@ -139,10 +68,12 @@ var Storage = {
         {
             return;
         }
+
         var totalUser = this.getUserList();
         if(typeof totalUser[userName] == "undefined")
         {
             this.addUser(userName);
+            totalUser = this.getUserList();
         }
         totalUser[userName].level = (level > totalUser[userName].level) ? level : totalUser[userName].level;
         totalUser[userName].score = (score > totalUser[userName].score) ? score : totalUser[userName].score;
@@ -185,9 +116,8 @@ var Storage = {
     },
 
     getUserList : function(){
-        //var totalUser = cc.sys.localStorage.getItem("userList");
-        //return totalUser ? JSON.parse(totalUser) : new Object();
-        return totalUser;
+        var totalUser = cc.sys.localStorage.getItem("userList");
+        return totalUser ? JSON.parse(totalUser) : new Object();
     },
 
     rankingSort : function (arrList){

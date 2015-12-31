@@ -45,8 +45,6 @@ var MenuTableLayer = cc.Layer.extend({
 
         this.addChild(menu);
 
-
-        //this.recordInfoForCurrentGame(Storage.getCurrentLevel(), Storage.getCurrentScore());
         return true;
     },
 

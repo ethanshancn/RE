@@ -154,20 +154,21 @@ var GameLayer = cc.Layer.extend({
             index++;
         }
 
-        if (joinCandys.length <= 1)
-            return;
-
         this.steps++;
-        this.moving = true;
+        if (joinCandys.length > 1)
+        {
+            this.moving = true;
 
-        for (var i = 0; i < joinCandys.length; i++) {
-            var candy = joinCandys[i];
-            this.mapPanel.removeChild(candy);
-            this.map[candy.column][candy.row] = null;
+            for (var i = 0; i < joinCandys.length; i++) {
+                var candy = joinCandys[i];
+                this.mapPanel.removeChild(candy);
+                this.map[candy.column][candy.row] = null;
+            }
+
+            this.score += joinCandys.length * joinCandys.length;
+            this._generateNewCandy();
         }
 
-        this.score += joinCandys.length * joinCandys.length;
-        this._generateNewCandy();
         this._checkSucceedOrFail();
     },
 
