@@ -17,7 +17,7 @@
         "src/GameUI.js",
         "src/Candy.js",
         "src/start.js",
-        "src/MenuTable.js",
+        "src/RankingList.js",
 	    "src/Home.js",
         "src/top.js",
         "src/sign.js"

@@ -16,11 +16,6 @@ var HomeLayer = cc.Layer.extend({
         bkgd.y = winsize.height / 2;
         this.addChild(bkgd);
 
-        //var ccew = new cc.Sprite("res/compnay.png");
-        //ccew.x = winsize.width / 2-20;
-        //ccew.y = winsize.height - 200;
-        //this.addChild(ccew);
-
         var tt = new cc.Sprite("res/titling.png");
         tt.x = winsize.width / 2;
         tt.y = winsize.height - 400;
@@ -51,17 +46,14 @@ var HomeLayer = cc.Layer.extend({
 
     },
     startGameCallback: function () {
-        console.log("youxikaishi ");
         cc.director.runScene(new GameScene());
     },
 
     catchTops: function () {
-        console.log("top10!");
         cc.director.runScene(new RankingListSence());
     }
 
 });
-
 
 var HomeScene = cc.Scene.extend({
     onEnter: function () {
