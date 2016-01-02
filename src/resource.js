@@ -32,6 +32,7 @@ var g_resources = [
     "res/ending.png",
     "res/sign_input.png",
     "res/sign_wenzi.png",
-    "res/rankingCellBg.png"
+    "res/rankingCellBg.png",
+    "res/axc.mp3"
 
 ];

@@ -53,6 +53,8 @@ cc.game.onStart = function(){
     cc.view.resizeWithBrowserSize(true);
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
+        //载入音乐
+        cc.audioEngine.playMusic("res/axc.mp3",true);
         cc.director.runScene(new HomeScene());
     }, this);
 };
